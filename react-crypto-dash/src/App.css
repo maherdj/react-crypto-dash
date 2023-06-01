@@ -1,10 +1,23 @@
 .App {
-  text-align: left;
+  text-align: center;
+  color: #A5D7E8;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.Menu-bar {
+  float: left;
+  background-color: #282c34;
+  text-align: center;
+  color:aliceblue;
+  margin: auto;
+  width: 200px;
+  height: 200px;
+  /* padding: 0.5rem 0rem; */
+  
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -13,15 +26,9 @@
   }
 }
 
-.App-header {
+Body {
   background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  
 }
 
 .App-link {
