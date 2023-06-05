@@ -1,0 +1,41 @@
+.Menu-list {
+    list-style-type: none;
+    
+}
+
+.nav-link1 {
+    color: #DDE6ED;
+    font-size: x-large;
+}
+
+.nav-link1:hover {
+    color: #9DB2BF;
+}
+
+.nav-link2 {
+    color: #DDE6ED;
+    font-size: x-large;
+    height: auto;
+}
+
+.nav-link2:hover {
+    color: #9DB2BF;
+}
+
+.nav-link3 {
+    color: #DDE6ED;
+    font-size: x-large;
+}
+
+.nav-link3:hover {
+    color: #9DB2BF;
+}
+
+.nav-link4 {
+    color: #DDE6ED;
+    font-size: x-large;
+}
+
+.nav-link4:hover {
+    color: #9DB2BF;
+}

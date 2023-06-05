@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  color: #A5D7E8;
+  color: black;
 }
 
 .App-logo {
@@ -12,12 +12,11 @@
   float: left;
   background-color: #282c34;
   text-align: center;
-  color:aliceblue;
+  color: aliceblue;
   margin: auto;
   width: 200px;
   height: 200px;
   /* padding: 0.5rem 0rem; */
-  
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -28,7 +27,6 @@
 
 Body {
   background-color: #282c34;
-  
 }
 
 .App-link {
