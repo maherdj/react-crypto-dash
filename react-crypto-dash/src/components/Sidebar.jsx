@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
+import { useTheme, useThemeUpdate } from "./ThemeContext";
 // import "react-pro-sidebar/dist/css/styles.css";
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import NewspaperOutlinedIcon from "@mui/icons-material/NewspaperOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import AccountBalanceOutlinedIcon from "@mui/icons-material/AccountBalanceOutlined";
 import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   // const theme = useTheme();
@@ -30,6 +33,8 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 const MenuBar = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+  const darkTheme = useTheme();
+  const toggleTheme = useThemeUpdate();
   return (
     <Box
       sx={{
@@ -92,6 +97,12 @@ const MenuBar = () => {
               selected={selected}
               setSelected={setSelected}
             ></Item>
+          </Box>
+          <Box paddingLeft={collapsed ? undefined : "10%"} paddingTop="35px">
+            <MenuItem
+              icon={darkTheme ? <DarkModeIcon /> : <LightModeIcon />}
+              onClick={toggleTheme}
+            ></MenuItem>
           </Box>
         </Menu>
       </Sidebar>
