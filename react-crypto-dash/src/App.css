@@ -8,14 +8,15 @@
   pointer-events: none;
 }
 
-.Menu-bar {
+.menu-bar {
   float: left;
-  background-color: #282c34;
+
   text-align: center;
-  color: aliceblue;
-  margin: auto;
+
   width: 200px;
   height: 200px;
+  border: 0px 0px;
+  padding: 0px 0px;
   /* padding: 0.5rem 0rem; */
 }
 
@@ -40,4 +41,8 @@ Body {
   to {
     transform: rotate(360deg);
   }
+}
+
+.router {
+  margin-left: 300px;
 }

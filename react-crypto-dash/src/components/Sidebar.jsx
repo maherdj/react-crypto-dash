@@ -41,6 +41,10 @@ const MenuBar = () => {
         "& .pro-inner-item": {
           padding: "5px 35px 5px 20px",
         },
+        width: "250px",
+        margin: "0px 0px",
+        padding: "0px 0px",
+        borderWidth: "0px",
       }}
     >
       <Sidebar collapsed={collapsed}>

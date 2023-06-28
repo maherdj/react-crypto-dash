@@ -19,20 +19,18 @@ function App() {
       <div className="App">
         <header>
           <div>
-            <MenuBar />
-          </div>
-
-          {/* <div className='Menu-bar'>
-            <NavBar />
-          </div>  */}
-          <div className="Router">
-            <Routes className="links">
-              <Route path="/" element={<Home />} exact />
-              <Route path="/Portfolio" element={<Portfolio />} />
-              <Route path="/news" element={<News />} />
-              <Route path="/login" element={<Login />} />
-              {/* <Route component={Error} /> */}
-            </Routes>
+            <div className="menu-bar">
+              <MenuBar />
+            </div>
+            <div className="router">
+              <Routes className="links">
+                <Route path="/" element={<Home />} exact />
+                <Route path="/Portfolio" element={<Portfolio />} />
+                <Route path="/news" element={<News />} />
+                <Route path="/login" element={<Login />} />
+                {/* <Route component={Error} /> */}
+              </Routes>
+            </div>
           </div>
         </header>
         <body></body>
