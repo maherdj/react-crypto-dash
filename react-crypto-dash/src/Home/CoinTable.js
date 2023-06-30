@@ -7,31 +7,133 @@ import {
   TableHead,
   TableBody,
   TableFooter,
-  TablePagination,
   Typography,
+  TablePagination,
+  IconButton,
+  useTheme,
+  Box,
 } from "@mui/material";
+
+import FirstPageIcon from "@mui/icons-material/FirstPage";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import LastPageIcon from "@mui/icons-material/LastPage";
+
+import PropTypes from "prop-types";
+
+/********************************************************************************/
+
+function TablePaginationActions(props) {
+  const theme = useTheme();
+  const { count, page, rowsPerPage, onPageChange } = props;
+
+  const handleFirstPageButtonClick = (event) => {
+    onPageChange(event, 0);
+  };
+
+  const handleBackButtonClick = (event) => {
+    onPageChange(event, page - 1);
+  };
+
+  const handleNextButtonClick = (event) => {
+    onPageChange(event, page + 1);
+  };
+
+  const handleLastPageButtonClick = (event) => {
+    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+  };
+
+  return (
+    <Box sx={{ flexShrink: 0, ml: 2.5, color: "white" }}>
+      <IconButton
+        sx={{ color: "white" }}
+        onClick={handleFirstPageButtonClick}
+        disabled={page === 0}
+        aria-label="first page"
+      >
+        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
+      </IconButton>
+      <IconButton
+        sx={{ color: "white" }}
+        onClick={handleBackButtonClick}
+        disabled={page === 0}
+        aria-label="previous page"
+      >
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowRight />
+        ) : (
+          <KeyboardArrowLeft />
+        )}
+      </IconButton>
+      <IconButton
+        sx={{ color: "white" }}
+        onClick={handleNextButtonClick}
+        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+        aria-label="next page"
+      >
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowLeft />
+        ) : (
+          <KeyboardArrowRight />
+        )}
+      </IconButton>
+      <IconButton
+        sx={{ color: "white" }}
+        onClick={handleLastPageButtonClick}
+        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+        aria-label="last page"
+      >
+        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
+      </IconButton>
+    </Box>
+  );
+}
+
+TablePaginationActions.propTypes = {
+  count: PropTypes.number.isRequired,
+  onPageChange: PropTypes.func.isRequired,
+  page: PropTypes.number.isRequired,
+  rowsPerPage: PropTypes.number.isRequired,
+};
+
+/********************************************************************************/
 
 function CoinTable() {
   const [allCoins, setAllCoins] = useState([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(100);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
   useEffect(() => {
+    const coins = [];
     const baseUrl = "https://api.coingecko.com/api/v3";
-    const listEndpoint =
-      "/coins/markets?vs_currency=usd&price_change_percentage=1h%2C24h%2C7d";
+    const listEndpoint = `/coins/markets?vs_currency=usd&price_change_percentage=1h%2C24h%2C7d&page=1&per_page=${rowsPerPage}&precision=2`;
     // const params = `?limit=${limit}`;
     const apiUrl = `${baseUrl}${listEndpoint}`;
-
     fetch(apiUrl)
       .then((response) => response.json())
       .then((data) => {
+        for (var i in data) {
+          coins.push(data[i]);
+        }
         setAllCoins(data);
-        console.log(data[0]);
       });
-  }, []);
+    console.log(coins);
+  }, [rowsPerPage]);
+
+  const rowLength = allCoins.length;
 
   return (
     <Table>
-      <TableHead>
+      <TableHead sx={{ backgroundColor: "darkslategrey" }}>
         <TableCell className="rank-header">
           <Typography sx={{ color: "white" }}>Rank</Typography>
         </TableCell>
@@ -107,7 +209,20 @@ function CoinTable() {
       </TableBody>
       <TableFooter>
         <TablePagination
-          rowsPerPageOptions={[10, 50, { value: -1, label: "All" }]}
+          sx={{ color: "white" }}
+          rowsPerPageOptions={[
+            50,
+            100,
+            150,
+            { label: "ALL", value: -1, color: "white" },
+          ]}
+          colSpan={8}
+          count={rowLength}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          ActionsComponent={TablePaginationActions}
         />
       </TableFooter>
     </Table>
