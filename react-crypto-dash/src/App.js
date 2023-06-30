@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { useTheme, useThemeUpdate } from "./components/ThemeContext";
 
-import Home from "./components/Home";
+import Home from "./Home/Home";
 import Portfolio from "./components/Portfolio";
 import News from "./components/News";
 import Login from "./components/Login";

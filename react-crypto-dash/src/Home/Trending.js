@@ -13,7 +13,6 @@ function Trending() {
       .then((response) => response.json())
       .then((data) => {
         setTrendingCoins(data.coins);
-        console.log(data.coins[0].item);
       });
   }, []);
 
@@ -23,7 +22,7 @@ function Trending() {
         return (
           <li key={index} style={{ listStyle: "none" }}>
             <img src={coin.item.thumb} />
-            {coin.item.id + " "}
+            {coin.item.name + " "}
             {coin.item.price_btc} BTC
           </li>
         );
