@@ -1,4 +1,36 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+../.vs/react-crypto-dash/FileContentIndex/dab30092-d485-4a15-904e-865089e50b57.vsidx
+../.vs/react-crypto-dash/FileContentIndex/dab30092-d485-4a15-904e-865089e50b57.vsidx
+../.vs
+
+../.vs/slnx.sqlite
+../.vs/VSWorkspaceState.json
 .vs/VSWorkspaceState.json
 .vs/react-crypto-dash/FileContentIndex/391d144f-c284-41b1-8a36-83d1cb11f165.vsidx
 .vs/react-crypto-dash/FileContentIndex/9786561f-7da8-4978-8a4e-bf128ca624be.vsidx
-.vs/react-crypto-dash/v17/.suo
+.vs/react-crypto-dash/v17
+package-lock.json
+package.json
+public/
